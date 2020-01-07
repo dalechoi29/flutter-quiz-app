@@ -12,8 +12,8 @@ class CardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        CardRow(currQuestion.files.sublist(0, 2)),  // 0, 1번째 이미지 주소 전달
-        CardRow(currQuestion.files.sublist(2, 4)),  // 2, 3번째 이미지 주소 전달
+        CardRow(currQuestion.files.sublist(0, 2)), // 0, 1번째 이미지 주소 전달
+        CardRow(currQuestion.files.sublist(2, 4)), // 2, 3번째 이미지 주소 전달
       ],
     );
   }

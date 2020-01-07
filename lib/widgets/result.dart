@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'score.dart';
+import 'rank.dart';
+
 class Result extends StatelessWidget {
+  final int score;
+  final Function resetHandler;
+
+  Result(this.score, this.resetHandler);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,52 +16,37 @@ class Result extends StatelessWidget {
         padding: EdgeInsets.all(20.0),
         child: Center(
           child: Container(
-            child: Column(
+            child: ListView(
               children: <Widget>[
-                Card(
+                Score(score),
+                Rank(),
+                FlatButton(
+                  onPressed: resetHandler,
                   child: Container(
-                    padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    height: 48,
+                    width: double.infinity,
+                    color: Color(0xFF00838F),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                      Container(
-                        child: Text(
-                          'Average Score',
-                          style: TextStyle(
-                            color: Color(0xFF006064),
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Roboto',
+                        Transform.rotate(
+                          angle: 180 * 3.14 / 180,
+                          child: Icon(
+                            Icons.replay,
+                            color: Colors.white,
                           ),
                         ),
-                      ),
-                      Container(
-                        height: 72,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-                          Text(
-                            '20',
-                            style: TextStyle(
-                              color: Color(0xFF006064),
-                              fontSize: 72,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat',
-                            ),
+                        Text(
+                          'TRY AGAIN',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
                           ),
-                          Text(
-                            '/ 100',
-                            style: TextStyle(
-                              color: Color(0xFF006064).withOpacity(0.45),
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat',
-                            ),
-                          ),
-                        ]),
-                      ),
-                    ]),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

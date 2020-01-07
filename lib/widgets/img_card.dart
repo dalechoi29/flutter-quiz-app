@@ -17,7 +17,10 @@ class ImageCard extends StatelessWidget {
           onTap: () => print('test'),
           child: Column(
             children: <Widget>[
-              Image.asset(imgPath),
+              Container(
+                margin: EdgeInsets.only(top: 8),
+                child: Image.asset(imgPath),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[

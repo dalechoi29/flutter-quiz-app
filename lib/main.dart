@@ -25,6 +25,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var _questionIdx = 0;
+  var _totalScore = 1;
 
   List<Question> _questions = [
     Question([
@@ -34,16 +35,23 @@ class _MyHomePageState extends State<MyHomePage> {
       {'path': 'assets/images/logo4.png', 'isTrue': false},
     ]),
     Question([
-      'assets/images/logo3.png',
-      'assets/images/logo4.png',
-      'assets/images/logo1.png',
-      'assets/images/logo2.png',
+      {'path': 'assets/images/logo3.png', 'isTrue': false},
+      {'path': 'assets/images/logo4.png', 'isTrue': true},
+      {'path': 'assets/images/logo1.png', 'isTrue': false},
+      {'path': 'assets/images/logo2.png', 'isTrue': false},
     ]),
   ];
 
   void _nextQuestion() {
     setState(() {
       _questionIdx += 1;
+    });
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIdx = 0;
+      _totalScore = 0;
     });
   }
 
@@ -65,10 +73,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         Stack(
                           alignment: Alignment.center,
                           children: <Widget>[
-                            Image.asset('assets/images/circle.png'),
+                            Icon(
+                              Icons.brightness_1,
+                              size: 52,
+                              color: Color(0xFF006064),
+                            ),
                             Center(
                               child: Text(
-                                '${_questionIdx+1} / ${_questions.length}',
+                                '${_questionIdx + 1} / ${_questions.length}',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -99,15 +111,27 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontFamily: 'Roboto'),
                     ),
                     CardList(_questions[_questionIdx]),
-                    FlatButton(
-                      child: Text('CHECK'),
-                      onPressed: _nextQuestion,
+                    Container(
+                      height: 48,
+                      width: 360,
+                      color: Color(0xFF00838F),
+                      child: FlatButton(
+                        child: Text('NEXT',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize:14,
+                          fontFamily: 'Montserrat',
+                        ),
+                      ),
+                        onPressed: _nextQuestion,
+                      ),
                     )
                   ],
                 ),
               ),
             )
-          : Result(),
+          : Result(_totalScore, _resetQuiz),
     );
   }
 }

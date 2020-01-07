@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'img_card.dart';
 
 class CardRow extends StatelessWidget {
-  final List<String> imgs;
+  final List<Map<String, Object>> imgs;
 
   CardRow(this.imgs);
 
@@ -12,8 +12,8 @@ class CardRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        ImageCard(imgs[0]),
-        ImageCard(imgs[1]),
+        ImageCard(imgs[0]['path']),
+        ImageCard(imgs[1]['path']),
       ],
     );
   }
