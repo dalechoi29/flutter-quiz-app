@@ -8,20 +8,12 @@ class ImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return IconButton(
-    //   icon: Image.asset(imgPath),
-    //   iconSize: 50,
-    //   color: Colors.black,
-    //   onPressed: () {
-    //     this.color = Colors.black;
-    //   },
-    // );
     return Container(
       width: 152,
       height: 152,
       child: Card(
         child: GestureDetector(
-          onTap: () => print('test'),
+          onTap: () {},
           child: Column(
             children: <Widget>[
               Container(

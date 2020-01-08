@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../models/question.dart';
 import 'card_list.dart';
 import 'result.dart';
+import 'progress.dart';
+import 'rest_question.dart';
+
+import '../models/question.dart';
+import '../const.dart';
 
 // 퀴즈 페이지를 구성하는 객체
 class QuizPage extends StatefulWidget {
@@ -44,6 +48,7 @@ class _QuizPageState extends State<QuizPage> {
   void _nextQuestion() {
     setState(() {
       _questionIdx += 1;
+      print(_questionIdx);
       _progressValue += tick;
     });
   }
@@ -53,7 +58,7 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {
       _questionIdx = 0;
       _totalScore = 0;
-      _progressValue = 0.0;
+      _progressValue = tick;
     });
   }
 
@@ -67,52 +72,12 @@ class _QuizPageState extends State<QuizPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-                      child: LinearProgressIndicator(
-                        valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF006064)),
-                        backgroundColor: Colors.white,
-                        value: _progressValue,
-                      ),
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Stack(
-                          alignment: Alignment.center,
-                          children: <Widget>[
-                            Icon(
-                              Icons.brightness_1,
-                              size: 52,
-                              color: Color(0xFF006064),
-                            ),
-                            Center(
-                              child: Text(
-                                '${_questionIdx + 1} / ${_questions.length}',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 20),
-                          child: Text(
-                            'Are you sure?',
-                            style: TextStyle(
-                                color: Color(0xFF006064),
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Montserrat'),
-                          ),
-                        ),
-                      ],
-                    ),
+                    Progress(_progressValue),
+                    RestQuestion(_questionIdx, _questions.length),
                     Text(
                       'Pick one you think is made by human.',
                       style: TextStyle(
-                          color: Color(0xFF006064),
+                          color: mainColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
                           fontFamily: 'Roboto'),
@@ -121,7 +86,7 @@ class _QuizPageState extends State<QuizPage> {
                     Container(
                       height: 48,
                       width: 360,
-                      color: Color(0xFF00838F),
+                      color: subColor,
                       child: FlatButton(
                         child: Text(
                           _defaultText,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'widgets/quiz.dart';
+import 'const.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,7 +29,7 @@ class Intro extends StatelessWidget {
               Text(
                 'Outstanding AI',
                 style: TextStyle(
-                  color: Color(0xFF006064),
+                  color: mainColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 40,
                   fontFamily: 'Montserrat',
@@ -37,7 +38,7 @@ class Intro extends StatelessWidget {
               Text(
                 'One logo is real, the other three are AI made.\n Pick the one made by human',
                 style: TextStyle(
-                  color: Color(0xFF006064),
+                  color: mainColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                   fontFamily: 'Montserrat',
@@ -54,11 +55,11 @@ class Intro extends StatelessWidget {
                 child: Container(
                   height: 48,
                   width: double.infinity,
-                  color: Color(0xFF00838F),
+                  color: subColor,
                   child: Row(
                     children: <Widget>[
                       Text(
-                        'START',
+                        'LET\'S START',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
