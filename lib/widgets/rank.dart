@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 사용자의 순위를 보여주는 카드
 class Rank extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,17 +31,20 @@ class Rank extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              height: 72,
-              child: Text(
-                '20',
-                style: TextStyle(
-                  color: Color(0xFF006064),
-                  fontSize: 72,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Montserrat',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  '211,250',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF006064),
+                    fontSize: 72,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),

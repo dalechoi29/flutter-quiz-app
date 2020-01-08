@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+// 사용자의 최종 점수를 보여주는 카드 위젯
 class Score extends StatelessWidget {
   final int score;
+  final int questionNum;
 
-  Score(this.score);
+  Score(this.score, this.questionNum);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class Score extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '/ 100',
+                        '/ ${questionNum * 10}',
                         style: TextStyle(
                           color: Color(0xFF006064).withOpacity(0.45),
                           fontSize: 14,

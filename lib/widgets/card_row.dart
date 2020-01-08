@@ -9,6 +9,7 @@ class CardRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 로우는 2개의 이미지를 지니고 있는 위젯
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[

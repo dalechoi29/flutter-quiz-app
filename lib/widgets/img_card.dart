@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 개별 이미지 하나를 담는 객체
 class ImageCard extends StatelessWidget {
   final String imgPath;
 
@@ -7,13 +8,19 @@ class ImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return IconButton(
+    //   icon: Image.asset(imgPath),
+    //   iconSize: 50,
+    //   color: Colors.black,
+    //   onPressed: () {
+    //     this.color = Colors.black;
+    //   },
+    // );
     return Container(
       width: 152,
       height: 152,
-      // Card라는 Pre-defined keyword
       child: Card(
-        child: InkWell(
-          splashColor: Colors.blue,
+        child: GestureDetector(
           onTap: () => print('test'),
           child: Column(
             children: <Widget>[
