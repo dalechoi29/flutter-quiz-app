@@ -17,7 +17,7 @@ class RestQuestion extends StatelessWidget {
           children: <Widget>[
             Icon(
               Icons.brightness_1,
-              size: 60,
+              size: 72,
               color: mainColor,
             ),
             Center(
@@ -32,7 +32,7 @@ class RestQuestion extends StatelessWidget {
           ],
         ),
         Container(
-          margin: EdgeInsets.only(left: 20),
+          margin: EdgeInsets.only(left: 10),
           child: Text(
             'You won\'t beat AI :-)',
             style: TextStyle(
