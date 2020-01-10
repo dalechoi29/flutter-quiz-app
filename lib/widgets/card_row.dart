@@ -4,8 +4,9 @@ import 'img_card.dart';
 
 class CardRow extends StatelessWidget {
   final List<Map<String, Object>> imgs;
+  final Function answerQuestion;
 
-  CardRow(this.imgs);
+  CardRow(this.imgs, this.answerQuestion);
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +14,8 @@ class CardRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        ImageCard(imgs[0]['path']),
-        ImageCard(imgs[1]['path']),
+        ImageCard(imgs[0], answerQuestion),
+        ImageCard(imgs[1], answerQuestion),
       ],
     );
   }

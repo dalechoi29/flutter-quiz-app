@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/quiz.dart';
@@ -10,6 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor:
+            defaultTargetPlatform == TargetPlatform.android ? mainColor : null,
+      ),
       title: 'Quiz Application',
       home: Intro(),
     );

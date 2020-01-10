@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'card_row.dart';
-import '../models/question.dart';
 
 class CardList extends StatelessWidget {
-  final Question currQuestion;
+  final List<Map<String, Object>> currQuestion;
+  final Function answerQuestion;
 
-  CardList(this.currQuestion);
+  CardList(this.currQuestion, this.answerQuestion);
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class CardList extends StatelessWidget {
     // 각각의 로우는 다시 2개의 개별 이미지를 지님
     return Column(
       children: <Widget>[
-        CardRow(currQuestion.files.sublist(0, 2)), // 0, 1번째 이미지 주소 전달
-        CardRow(currQuestion.files.sublist(2, 4)), // 2, 3번째 이미지 주소 전달
+        CardRow(currQuestion.sublist(0, 2), answerQuestion), // 0, 1번째 이미지 주소 전달
+        CardRow(currQuestion.sublist(2, 4), answerQuestion), // 2, 3번째 이미지 주소 전달
       ],
     );
   }

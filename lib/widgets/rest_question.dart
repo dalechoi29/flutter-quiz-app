@@ -34,7 +34,7 @@ class RestQuestion extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(left: 20),
           child: Text(
-            'Are you sure?',
+            'You won\'t beat AI :-)',
             style: TextStyle(
                 color: mainColor,
                 fontSize: 24,
