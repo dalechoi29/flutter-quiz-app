@@ -53,6 +53,36 @@ class _QuizPageState extends State<QuizPage> {
       {'path': 'assets/images/leaf_logo1.png', 'score': 1},
       {'path': 'assets/images/leaf_logo4.png', 'score': 0},
     ],
+    [
+      {'path': 'assets/images/animal_logo1.png', 'score': 1},
+      {'path': 'assets/images/animal_logo3.png', 'score': 0},
+      {'path': 'assets/images/animal_logo2.png', 'score': 0},
+      {'path': 'assets/images/animal_logo4.png', 'score': 0},
+    ],
+    [
+      {'path': 'assets/images/typo1_logo2.png', 'score': 0},
+      {'path': 'assets/images/typo1_logo3.png', 'score': 0},
+      {'path': 'assets/images/typo1_logo4.png', 'score': 0},
+      {'path': 'assets/images/typo1_logo1.png', 'score': 1},
+    ],
+    [
+      {'path': 'assets/images/typo2_logo2.png', 'score': 0},
+      {'path': 'assets/images/typo2_logo3.png', 'score': 0},
+      {'path': 'assets/images/typo2_logo1.png', 'score': 1},
+      {'path': 'assets/images/typo2_logo4.png', 'score': 0},
+    ],
+    [
+      {'path': 'assets/images/music4_logo2.png', 'score': 0},
+      {'path': 'assets/images/music4_logo3.png', 'score': 0},
+      {'path': 'assets/images/music4_logo1.png', 'score': 1},
+      {'path': 'assets/images/music4_logo4.png', 'score': 0},
+    ],
+        [
+      {'path': 'assets/images/music5_logo2.png', 'score': 0},
+      {'path': 'assets/images/music5_logo3.png', 'score': 0},
+      {'path': 'assets/images/music5_logo1.png', 'score': 1},
+      {'path': 'assets/images/music5_logo4.png', 'score': 0},
+    ],
   ];
 
   static var tick = 1.0 / (_questions.length.toDouble());
@@ -67,7 +97,7 @@ class _QuizPageState extends State<QuizPage> {
       _progressValue += tick;
     });
 
-    print(_totalScore);
+    print('Current Score: $_totalScore / ${_questions.length}');
   }
 
   // 퀴즈를 초기화 하는 함수
@@ -82,6 +112,7 @@ class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backColor,
       body: _questionIdx < _questions.length
           ? Padding(
               padding: EdgeInsets.all(24.0),

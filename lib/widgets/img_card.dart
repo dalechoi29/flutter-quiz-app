@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../const.dart';
+
 // 개별 이미지 하나를 담는 객체
 class ImageCard extends StatelessWidget {
   final Map<String, Object> img;
@@ -13,17 +15,17 @@ class ImageCard extends StatelessWidget {
       width: 152,
       height: 152,
       child: Card(
-        child: GestureDetector(
+        child: InkWell(
+          splashColor: mainColor,
           onTap: () {
             answerQuestion(img['score']);
           },
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 8),
-                child: Image.asset(img['path']),
-              ),
-            ],
+          child: Container(
+            child: Image.asset(
+              img['path'],
+              width: 150,
+              height: 100,
+            ),
           ),
         ),
       ),

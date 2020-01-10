@@ -13,7 +13,7 @@ class Progress extends StatelessWidget {
     return LinearPercentIndicator(
       lineHeight: 10,
       progressColor: mainColor,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[300],
       percent: progressValue,
     );
   }

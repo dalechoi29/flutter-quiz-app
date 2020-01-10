@@ -25,6 +25,7 @@ class Intro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backColor,
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Center(

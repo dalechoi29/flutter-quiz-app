@@ -94,6 +94,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backColor,
       appBar: AppBar(
           centerTitle: true,
           automaticallyImplyLeading: false,
