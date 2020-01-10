@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:percent_indicator/percent_indicator.dart';
+
 import 'score.dart';
+import 'rank.dart';
 import 'reset.dart';
-import 'tier.dart';
 import 'meme.dart';
+import '../const.dart';
 
 class Result extends StatefulWidget {
   final int score;
@@ -14,7 +17,8 @@ class Result extends StatefulWidget {
   Result(this.score, this.questionNum, this.resetHandler, this.rank);
 
   @override
-  _ResultState createState() => _ResultState(score, questionNum, resetHandler, rank);
+  _ResultState createState() =>
+      _ResultState(score, questionNum, resetHandler, rank);
 }
 
 // 애니메이션 하나를 추가하기 위해 SingleTickerProviderStateMixin을 구현
@@ -22,7 +26,11 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
   final int score;
   final int questionNum;
   final Function resetHandler;
+
   double rank;
+  double tier;
+  String tierTitle;
+  String tierImg;
 
   Animation animation;
   AnimationController animationController;
@@ -31,7 +39,19 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    rank = rank * 100000.0;
+    tier = score / 10.0;
+
+    if (tier < 0.3) {
+      tierTitle = 'Bronze';
+      tierImg = 'assets/images/medal3.png';
+    } else if (tier >= 0.3 && tier < 0.6) {
+      tierTitle = 'Silver';
+      tierImg = 'assets/images/medal2.png';
+    } else {
+      tierTitle = 'Gold';
+      tierImg = 'assets/images/medal1.png';
+    }
+
     animationController = AnimationController(
       vsync: this,
       duration: Duration(
@@ -41,15 +61,22 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
     animation = animationController;
 
     super.initState();
-    animateRank();
+    animateTier();
   }
 
-  void animateRank() {
+  @override
+  void dispose() {
+    // 본 위젯이 없어질 때, 애니메이션 컨트롤러도 파기시켜야 함 !
+    animationController.dispose();
+    super.dispose();
+  }
+
+  void animateTier() {
     setState(() {
       // 초기 값과 결과 값을 정의해준 후,
       animation = Tween<double>(
         begin: 0.0,
-        end: rank,
+        end: tier,
       ).animate(CurvedAnimation(
         curve: Curves.fastOutSlowIn,
         parent: animationController,
@@ -68,8 +95,15 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Total Result"),
-      ),
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          title: Text(
+            "Total Result",
+            style: TextStyle(
+              fontFamily: "Montserrat",
+              fontWeight: FontWeight.w600,
+            ),
+          )),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Center(
@@ -80,6 +114,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                   child: ListView(
                     children: <Widget>[
                       Score(score, questionNum),
+                      Rank(),
                       Card(
                         elevation: 5,
                         child: Container(
@@ -90,7 +125,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  'Your Rank',
+                                  'Tier $tierTitle',
                                   style: TextStyle(
                                     color: Color(0xFF006064),
                                     fontSize: 24,
@@ -101,7 +136,7 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                               ),
                               Container(
                                 child: Text(
-                                  'Are you sure you\'re a human?',
+                                  'Your rank leads you to somewhere over here',
                                   style: TextStyle(
                                     color: Color(0xFF006064).withOpacity(0.45),
                                     fontSize: 14,
@@ -109,27 +144,34 @@ class _ResultState extends State<Result> with SingleTickerProviderStateMixin {
                                   ),
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    '${animation.value.toStringAsFixed(0)}',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xFF006064),
-                                      fontSize: 72,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat',
-                                    ),
+                              Center(
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                    top: 28,
+                                    bottom: 5,
                                   ),
-                                ],
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: <Widget>[
+                                      CircularPercentIndicator(
+                                        radius: 190,
+                                        lineWidth: 10,
+                                        percent: animation.value,
+                                        progressColor: mainColor,
+                                      ),
+                                      Image.asset(
+                                        tierImg,
+                                        height: 120,
+                                        width: 120,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ],
                           ),
                         ),
                       ),
-                      // Rank(),
-                      Tier(),
                       Meme(),
                     ],
                   ),

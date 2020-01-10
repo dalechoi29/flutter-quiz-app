@@ -17,7 +17,7 @@ class RestQuestion extends StatelessWidget {
           children: <Widget>[
             Icon(
               Icons.brightness_1,
-              size: 52,
+              size: 60,
               color: mainColor,
             ),
             Center(

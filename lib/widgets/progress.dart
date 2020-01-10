@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+
+import '../const.dart';
 
 class Progress extends StatelessWidget {
   final double progressValue;
@@ -7,13 +10,11 @@ class Progress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-      child: LinearProgressIndicator(
-        valueColor: new AlwaysStoppedAnimation<Color>(Color(0xFF006064)),
-        backgroundColor: Colors.white,
-        value: progressValue,
-      ),
+    return LinearPercentIndicator(
+      lineHeight: 10,
+      progressColor: mainColor,
+      backgroundColor: Colors.white,
+      percent: progressValue,
     );
   }
 }

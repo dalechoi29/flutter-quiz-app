@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Tier extends StatelessWidget{
+class Tier extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Card(
       elevation: 5,
       child: Container(
@@ -31,24 +31,11 @@ class Tier extends StatelessWidget{
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Image',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFF006064),
-                    fontSize: 72,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Montserrat',
-                  ),
-                ),
-              ],
-            ),
+
+            // 여기에 인디케이터 추가 !
           ],
         ),
       ),
     );
-  } 
+  }
 }
