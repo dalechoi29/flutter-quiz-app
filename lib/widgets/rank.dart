@@ -5,6 +5,7 @@ class Rank extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 5,
       child: Container(
         padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
         child: Column(
@@ -12,7 +13,7 @@ class Rank extends StatelessWidget {
           children: <Widget>[
             Container(
               child: Text(
-                'Average Score',
+                'Your Rank',
                 style: TextStyle(
                   color: Color(0xFF006064),
                   fontSize: 24,

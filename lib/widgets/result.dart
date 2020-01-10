@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'score.dart';
 import 'rank.dart';
+import '../const.dart';
 
 // 사용자의 결과를 보여주는 페이지 위젯
 class Result extends StatelessWidget {
@@ -27,27 +28,34 @@ class Result extends StatelessWidget {
                   child: Container(
                     height: 48,
                     width: double.infinity,
-                    color: Color(0xFF00838F),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Transform.rotate(
-                          angle: 180 * 3.14 / 180,
-                          child: Icon(
-                            Icons.replay,
-                            color: Colors.white,
+                    color: Colors.transparent,
+                    child: Container(
+                      width: double.infinity,
+                      decoration: new BoxDecoration(
+                        color: subColor,
+                        borderRadius: new BorderRadius.circular(36.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Transform.rotate(
+                            angle: 180 * 3.14 / 180,
+                            child: Icon(
+                              Icons.replay,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'TRY AGAIN',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            fontFamily: 'Montserrat',
-                            color: Colors.white,
+                          Text(
+                            'TRY AGAIN',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

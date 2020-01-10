@@ -24,7 +24,7 @@ class Intro extends StatelessWidget {
         padding: EdgeInsets.all(20.0),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Text(
                 'Outstanding AI',
@@ -36,12 +36,12 @@ class Intro extends StatelessWidget {
                 ),
               ),
               Text(
-                'One logo is real, the other three are AI made.\n Pick the one made by human',
+                'One logo is real, the other three are AI made.\nPick the one made by human',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: mainColor,
-                  fontWeight: FontWeight.w600,
                   fontSize: 14,
-                  fontFamily: 'Montserrat',
+                  fontFamily: 'Roboto',
                 ),
               ),
               Image.asset('assets/images/intro.png'),
@@ -55,19 +55,27 @@ class Intro extends StatelessWidget {
                 child: Container(
                   height: 48,
                   width: double.infinity,
-                  color: subColor,
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        'LET\'S START',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                          fontFamily: 'Montserrat',
+                  color: Colors.transparent,
+                  child: new Container(
+                    width: double.infinity,
+                    decoration: new BoxDecoration(
+                      color: subColor,
+                      borderRadius: new BorderRadius.circular(36.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Let\'s Start'.toUpperCase(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            fontFamily: 'Montserrat',
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

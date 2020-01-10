@@ -10,6 +10,7 @@ class Score extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 5,
       child: Container(
         padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
         child: Column(
