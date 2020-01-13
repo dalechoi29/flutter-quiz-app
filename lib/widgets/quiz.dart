@@ -1,10 +1,9 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 import 'card_list.dart';
 import 'result.dart';
-import 'progress.dart';
 import 'rest_question.dart';
 import '../utils.dart';
 
@@ -55,8 +54,6 @@ class _QuizPageState extends State<QuizPage> {
       _progressValue += tick;
       _provIdx = _rng.nextInt(_provocations.length - 1);
     });
-
-    print('Current Score: $_totalScore / ${_questions.length}');
   }
 
   @override
@@ -91,7 +88,12 @@ class _QuizPageState extends State<QuizPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Progress(_progressValue),
+                    LinearPercentIndicator(
+                      lineHeight: 10,
+                      progressColor: mainColor,
+                      backgroundColor: Colors.grey[300],
+                      percent: _progressValue,
+                    ),
                     RestQuestion(_questionIdx, _questions.length,
                         _provocations[_provIdx]),
                     Text(
