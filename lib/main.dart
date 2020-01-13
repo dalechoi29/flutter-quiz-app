@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/quiz.dart';
-import 'const.dart';
+import 'utils.dart';
 
 void main() => runApp(MyApp());
 

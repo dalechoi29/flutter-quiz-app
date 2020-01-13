@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-import '../const.dart';
+import '../utils.dart';
 
 class Progress extends StatelessWidget {
   final double progressValue;

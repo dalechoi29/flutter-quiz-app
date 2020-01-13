@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../const.dart';
+import '../utils.dart';
 
 // 개별 이미지 하나를 담는 객체
 class ImageCard extends StatelessWidget {

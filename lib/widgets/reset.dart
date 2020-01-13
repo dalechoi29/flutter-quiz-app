@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../const.dart';
+import '../utils.dart';
 
 class ResetButton extends StatelessWidget {
   final Function resetHandler;

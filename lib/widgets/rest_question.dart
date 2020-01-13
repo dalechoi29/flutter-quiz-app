@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../const.dart';
+import '../utils.dart';
 
 class RestQuestion extends StatelessWidget {
   final int questionIdx;
   final int questionLen;
+  final String provocation;
 
-  RestQuestion(this.questionIdx, this.questionLen);
+  RestQuestion(this.questionIdx, this.questionLen, this.provocation);
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +32,17 @@ class RestQuestion extends StatelessWidget {
             )
           ],
         ),
-        Container(
-          margin: EdgeInsets.only(left: 10),
-          child: Text(
-            'You won\'t beat AI :-)',
-            style: TextStyle(
-                color: mainColor,
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Montserrat'),
+        Flexible(
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Text(
+              provocation,
+              style: TextStyle(
+                  color: mainColor,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Montserrat'),
+            ),
           ),
         ),
       ],

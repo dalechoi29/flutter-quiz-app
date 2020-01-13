@@ -6,7 +6,7 @@ import 'score.dart';
 import 'rank.dart';
 import 'reset.dart';
 import 'meme.dart';
-import '../const.dart';
+import '../utils.dart';
 
 class Result extends StatefulWidget {
   final int score;

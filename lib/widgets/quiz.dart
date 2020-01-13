@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'card_list.dart';
 import 'result.dart';
 import 'progress.dart';
 import 'rest_question.dart';
-import '../const.dart';
+import '../utils.dart';
 
 // 퀴즈 페이지를 구성하는 객체
 class QuizPage extends StatefulWidget {
@@ -16,73 +18,29 @@ class _QuizPageState extends State<QuizPage> {
   var _questionIdx = 0;
   var _totalScore = 0;
 
-  var currIcon = new Icon(
-    Icons.brightness_1,
-    color: Colors.white,
-  );
+  var _rng = new Random();
+  var _provIdx = 0;
+
+  final List<String> _provocations = [
+    'You won\'t beat AI :-)',
+    'Looooooooser :P',
+    'You\'d better google it !',
+    'You are so bad at this !',
+    'Dumb assssssss :-P',
+  ];
 
   // 문제를 담고 있는 리스트 객체
   static final List<List<Map<String, Object>>> _questions = [
-    [
-      {'path': 'assets/images/crown_logo1.png', 'score': 0},
-      {'path': 'assets/images/crown_logo2.png', 'score': 1},
-      {'path': 'assets/images/crown_logo3.png', 'score': 0},
-      {'path': 'assets/images/crown_logo4.png', 'score': 0},
-    ],
-    [
-      {'path': 'assets/images/music1_logo3.png', 'score': 0},
-      {'path': 'assets/images/music1_logo4.png', 'score': 0},
-      {'path': 'assets/images/music1_logo1.png', 'score': 1},
-      {'path': 'assets/images/music1_logo2.png', 'score': 0},
-    ],
-    [
-      {'path': 'assets/images/music2_logo2.png', 'score': 0},
-      {'path': 'assets/images/music2_logo3.png', 'score': 0},
-      {'path': 'assets/images/music2_logo1.png', 'score': 1},
-      {'path': 'assets/images/music2_logo4.png', 'score': 0},
-    ],
-    [
-      {'path': 'assets/images/music3_logo2.png', 'score': 0},
-      {'path': 'assets/images/music3_logo3.png', 'score': 0},
-      {'path': 'assets/images/music3_logo1.png', 'score': 1},
-      {'path': 'assets/images/music3_logo4.png', 'score': 0},
-    ],
-    [
-      {'path': 'assets/images/leaf_logo2.png', 'score': 0},
-      {'path': 'assets/images/leaf_logo3.png', 'score': 0},
-      {'path': 'assets/images/leaf_logo1.png', 'score': 1},
-      {'path': 'assets/images/leaf_logo4.png', 'score': 0},
-    ],
-    [
-      {'path': 'assets/images/animal_logo1.png', 'score': 1},
-      {'path': 'assets/images/animal_logo3.png', 'score': 0},
-      {'path': 'assets/images/animal_logo2.png', 'score': 0},
-      {'path': 'assets/images/animal_logo4.png', 'score': 0},
-    ],
-    [
-      {'path': 'assets/images/typo1_logo2.png', 'score': 0},
-      {'path': 'assets/images/typo1_logo3.png', 'score': 0},
-      {'path': 'assets/images/typo1_logo4.png', 'score': 0},
-      {'path': 'assets/images/typo1_logo1.png', 'score': 1},
-    ],
-    [
-      {'path': 'assets/images/typo2_logo2.png', 'score': 0},
-      {'path': 'assets/images/typo2_logo3.png', 'score': 0},
-      {'path': 'assets/images/typo2_logo1.png', 'score': 1},
-      {'path': 'assets/images/typo2_logo4.png', 'score': 0},
-    ],
-    [
-      {'path': 'assets/images/music4_logo2.png', 'score': 0},
-      {'path': 'assets/images/music4_logo3.png', 'score': 0},
-      {'path': 'assets/images/music4_logo1.png', 'score': 1},
-      {'path': 'assets/images/music4_logo4.png', 'score': 0},
-    ],
-        [
-      {'path': 'assets/images/music5_logo2.png', 'score': 0},
-      {'path': 'assets/images/music5_logo3.png', 'score': 0},
-      {'path': 'assets/images/music5_logo1.png', 'score': 1},
-      {'path': 'assets/images/music5_logo4.png', 'score': 0},
-    ],
+    buildQuiz('crown', 2),
+    buildQuiz('music1', 1),
+    buildQuiz('music2', 1),
+    buildQuiz('music3', 1),
+    buildQuiz('music4', 1),
+    buildQuiz('music5', 1),
+    buildQuiz('leaf', 1),
+    buildQuiz('animal', 1),
+    buildQuiz('typo1', 1),
+    buildQuiz('typo2', 1),
   ];
 
   static var tick = 1.0 / (_questions.length.toDouble());
@@ -95,9 +53,18 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {
       _questionIdx = _questionIdx + 1;
       _progressValue += tick;
+      _provIdx = _rng.nextInt(_provocations.length - 1);
     });
 
     print('Current Score: $_totalScore / ${_questions.length}');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // 시작 시, 질문 목록 셔플
+    _questions.shuffle();
+    _questions.forEach((e) => e.shuffle());
   }
 
   // 퀴즈를 초기화 하는 함수
@@ -106,6 +73,10 @@ class _QuizPageState extends State<QuizPage> {
       _questionIdx = 0;
       _totalScore = 0;
       _progressValue = tick;
+
+      // 매 게임마다 질문 목록 셔플
+      _questions.shuffle();
+      _questions.forEach((e) => e.shuffle());
     });
   }
 
@@ -121,7 +92,8 @@ class _QuizPageState extends State<QuizPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Progress(_progressValue),
-                    RestQuestion(_questionIdx, _questions.length),
+                    RestQuestion(_questionIdx, _questions.length,
+                        _provocations[_provIdx]),
                     Text(
                       'Pick one you think is made by human.',
                       style: TextStyle(
@@ -135,7 +107,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
             )
-          : Result(_totalScore, _questions.length, _resetQuiz, _totalScore.toDouble()),
+          : Result(_totalScore, _questions.length, _resetQuiz,
+              _totalScore.toDouble()),
     );
   }
 }
