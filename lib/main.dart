@@ -6,6 +6,7 @@ import 'utils.dart';
 
 void main() => runApp(MyApp());
 
+//  나는 최대일 바보죠.
 // 메인 앱은 항상 MaterialApp 혹은 CupertinoApp을 지녀야 함
 class MyApp extends StatelessWidget {
   @override
