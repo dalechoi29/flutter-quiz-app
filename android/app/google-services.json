@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "50328911671",
-    "firebase_url": "https://flutter-quiz-abb6a.firebaseio.com",
-    "project_id": "flutter-quiz-abb6a",
-    "storage_bucket": "flutter-quiz-abb6a.appspot.com"
+    "project_number": "442688064766",
+    "firebase_url": "https://fir-auth-starter-50423.firebaseio.com",
+    "project_id": "fir-auth-starter-50423",
+    "storage_bucket": "fir-auth-starter-50423.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:50328911671:android:340288ba4576e9f9bce4b2",
+        "mobilesdk_app_id": "1:442688064766:android:a0e6ca9f70685794cba9af",
         "android_client_info": {
           "package_name": "com.hyperhire.quiz_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "50328911671-5penqihtnf0bu6mebeb5l302a004j90h.apps.googleusercontent.com",
+          "client_id": "442688064766-q8qq6kltjv19uh8t3h10lfan9i6bu58f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hyperhire.quiz_app",
+            "certificate_hash": "5f13866fd5bffad54013bb9f77eb9a072ef0ab28"
+          }
+        },
+        {
+          "client_id": "442688064766-l4tcllkle6qq621jte6fi008q8hffkrp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCM2_5gQ_9zWcEcojh18XzI6x6OsnEIDXc"
+          "current_key": "AIzaSyCAgu8jNztI2Q3dSTEpQn-ufM_UhmziNUs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "50328911671-5penqihtnf0bu6mebeb5l302a004j90h.apps.googleusercontent.com",
+              "client_id": "442688064766-l4tcllkle6qq621jte6fi008q8hffkrp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

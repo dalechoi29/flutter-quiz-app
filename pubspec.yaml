@@ -8,12 +8,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  provider:
+  rxdart:
   percent_indicator: "^2.1.1"
   
+  firebase_auth:
   firebase_storage: ^3.1.1
   firebase_core: ^0.4.0+9
   firebase_analytics: ^5.0.6
+  cloud_firestore:
 
   cupertino_icons: ^0.1.2
 
@@ -26,7 +29,8 @@ flutter:
   uses-material-design: true
 
   assets:
-     - assets/images/
+    - assets/images/
+    - assets/loading_gif.gif
 
   fonts:
     - family: Montserrat

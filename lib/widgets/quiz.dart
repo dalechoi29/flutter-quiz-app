@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -9,6 +11,10 @@ import '../utils.dart';
 
 // 퀴즈 페이지를 구성하는 객체
 class QuizPage extends StatefulWidget {
+  final FirebaseUser user;
+
+  const QuizPage({Key key, this.user}) : super(key: key);
+
   @override
   _QuizPageState createState() => _QuizPageState();
 }
@@ -19,6 +25,9 @@ class _QuizPageState extends State<QuizPage> {
 
   var _rng = new Random();
   var _provIdx = 0;
+
+  var avgScore = 0.0;
+  var playedCnt = 0;
 
   final List<String> _provocations = [
     'You won\'t beat AI :-)',
@@ -48,6 +57,7 @@ class _QuizPageState extends State<QuizPage> {
   // 선택에 따라 질문 인덱스와 총합 점수를 변경해주는 함수
   void _answerQuestion(int score) {
     _totalScore += score;
+    print(_questionIdx);
 
     setState(() {
       _questionIdx = _questionIdx + 1;
@@ -109,8 +119,13 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
             )
-          : Result(_totalScore, _questions.length, _resetQuiz,
-              _totalScore.toDouble()),
+          : Result(
+              widget.user,
+              _totalScore,
+              _questions.length,
+              _resetQuiz,
+              _totalScore.toDouble(),
+            ),
     );
   }
 }
